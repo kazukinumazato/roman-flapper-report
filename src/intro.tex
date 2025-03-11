@@ -1,8 +1,55 @@
-\section{INTRODUCTION}
+\section{Introduction}
+In recent years, extensive research has been conducted on Human-Drone Interaction (HDI), exploring various applications. 
+In particular, physical contact-based interaction between drones and humans has gained increasing attention, as it has the potential to expand the scope of drone applications such as \cite{Knierim2017virtual-reality-tactile-drones, Nitta2014hoverball}. 
+However, ensuring physical and psychological safety during physical contact has been a significant challenge, especially when using conventional propeller-driven drones.  
+The rapid rotation of propellers poses a potential risk of injury, making it difficult to design safe and natural interactions. 
+Additionally, the high-frequency noise and mechanical appearance of propeller drones often induce psychological discomfort, further limiting their acceptance in close human proximity\cite{schaffer2021drone-noise-impact,Yeh2017Proxemics} .
+To address these issues, previous studies have made proposals such as 
+safeguard mechanisms to cover the drone body\cite{Yeh2017Proxemics, Atahi2017touch-based}, 
+drones that has an familiar appearance to human\cite{Yeh2017Proxemics}, 
+emotion encoding\cite{Cauchard2016emotion-encoding}, 
+and bio-inspired propellers that make less noise\cite{noda2018development-of-low-noise-propeller}.
 
-This template provides authors with most of the formatting specifications needed for preparing electronic versions of their papers. 
+In contrast, flapping-wing drones, inspired by the flight of birds and insects, offer several inherent advantages that make them particularly suitable for physical contact-based interaction\cite{de2020flapping}.  
+First, the soft and oscillatory motion of the wings minimizes the physical impact during contact, greatly enhancing physical safety.  
+Second, flapping-wing drones produce more natural sound compared to propeller-driven drones, reducing psychological discomfort during interaction.  
+Third, the biomimetic appearance and motion of flapping-wing drones evoke a sense of familiarity and warmth, promoting more natural and engaging human-drone interaction.  
 
-All standard paper components have been specified for three reasons: (1) ease of use when formatting individual papers, (2) automatic compliance to electronic requirements that facilitate the concurrent or later production of electronic products, and (3) conformity of style throughout a conference proceedings. 
-Margins, column widths, line spacing, and type styles are built-in; examples of the type styles are provided throughout this document and are identified in italic type, within parentheses, following the example. 
-Some components, such as multi-leveled equations, graphics, and tables are not prescribed, although the various table text styles are provided.
-The formatter will need to create these components, incorporating the applicable criteria that follow\cite{tezza2019state}.
+Despite these promising characteristics, most existing research on flapping-wing drones has primarily focused on their memchanical characteristics such as aerodynamics, wing design, and flight control\cite{billingsley2021aerodynamic,rifai2008flapping-control,chin2020efficient-flapping}, 
+with little attention given to research on the methodlogy for them to interact with humans in a physically and psychologically safe way, especially in scenarios involving direct physical contact.  
+To the best of our knowledge, no prior study has specifically investigated the design and implementation of physical contact-based interaction system using flapping-wing drones.  
+This presents a significant research gap in leveraging the unique properties of flapping-wing drones to enhance the quality of human-drone interaction.  
+
+Thus, in this study, we propose an interaction system in which a flapping-wing drone performs a palm landing motion on a human hand, enabling direct physical contact in a safe and natural manner.  
+To achieve this, we design a trajectory planning method that considers both physical and psychological human factors to facilitate safe and comfortable approaches.  
+We implement this method on a flapping-wing drone and conduct real-world experiments to evaluate its palm landing success rate and valiability.  
+
+We focus on palm landing because enabling palm landing has several potential advantages described as follows.
+\begin{enumerate}
+    \item  It allows environment-adaptive interaction.  
+    In crowded or spatially constrained environments, landing on a fixed surface is often impractical.  
+    However, by utilizing the human body as a dynamic landing platform, the drone can overcome spatial limitations and operate more flexibly.  
+    This approach is particularly useful in urban scenarios, public transportation, or remote field operations.
+    \item It contributes to energy efficiency enhancement. 
+    Drones have limited battery capacity and typically consume significant energy when hovering.  
+    By landing on a human palm during idle periods, the drone can conserve energy and extend its operational time.  
+    This energy-efficient operation is critical for long-term service tasks, search and rescue missions, or continuous monitoring operations.
+    \item palm landing enhances personalized companion interaction.  
+    By physically landing on a human palm, a drone can provide pet-like interaction, evoke emotional attachment, or facilitate social engagement.  
+    This is particularly promising for children, the elderly, or individuals with social isolation, where physical interaction fosters a stronger sense of companionship.
+\end{enumerate}
+These advantages highlight the potential of palm landing as a key interaction modality for flapping-wing drones, enabling a wide range of applications in various scenarios.
+
+The main contributions of this work can be summarized as
+follows:
+\begin{enumerate}
+    \item We propose a human-friendly interaction system utilizing a flapping-wing drone, focusing on trajectory planning.
+    \item We develop an intuitive device system for drone interaction.
+    \item We verify the proposed model using an actual drone.
+\end{enumerate}
+
+The remainder of this paper is organized as follows. 
+The basic mecanical characteristics and contorl method of flapping-wing drone is introduced in Section II. 
+The motion planning based on physical and psychological factors is presented in Section III,
+followed by the explanation of the device system for the interaction in Section IV.
+We then show the experimental results in Section V before concluding in Section VI.
