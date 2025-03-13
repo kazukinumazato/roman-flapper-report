@@ -1,0 +1,44 @@
+\section{MOTION PLANNING}
+
+To design a motion planning method that minimizes psychological discomfort when a flapping drone approaches a human, we must consider the several factors:
+
+\subsection{Distance}
+
+Given the expected size and shape of a flapping drone, we estimate that the minimum acceptable distance falls within a specific range. By maintaining this distance while gradually invading the landing zone, the psychological burden can be minimized.
+Several studies have investigated the psychological burden imposed by drones depending on their distance from humans useing different drone sizes\cite{Yeh2017Proxemics, lieser2021evaluating-distances,Duncan2013comfortable-approach, Acharya2017robot-vs-drone-comfort}.
+\cite{lieser2021evaluating-distances} is a paper focusing on tactile drone interaction using a drone with a wheelbase of 0.92m, which is suitable for palm landing.
+This paper conducted an experiment in which participants were asked to stop the drone when they felt uncomfortable by using foot (non-contact) and hand (contact) methods.
+The results show that the overall stop distance was $\bar{x}$ = 0.63m ($\sigma$ = 0.33m),
+which means that, if the drone needs to approach closer than this distance, it should be done in psychologically safe manners such as gradually decreasing the speed or using a trajectory that does not directly approach the user so that the user does not feel threatened.
+
+Moreover, the study \cite{lieser2021evaluating-distances} also shows that the average distance at which participants stopped the drone using their hands was $\bar{x}$ = 0.47m ($\sigma$ = 0.09m).
+This indicates that physical contact should occur outside this range to guarantee physical and psychological safety.
+
+\subsection{Altitude}
+
+According to \cite{mdpi_2023}, an appropriate altitude for approach is around X meters, as excessively high approaches can lead to discomfort.
+
+\subsection{Approach Direction}
+
+As indicated in \cite{lieser2021evaluating-distances}, drones positioned behind a person induce greater psychological burden. Therefore, the drone should approach either from the user's front or from the left side to ensure comfort.
+
+\subsection{Velocity}
+
+The perception of speed follows Weber's Law: at closer distances, small changes in distance appear faster, whereas at greater distances, motion perception is less sensitive \cite{weber_law}.
+
+Thus, slower speeds are preferable at closer distances. Studies on driver perception of approaching vehicles \cite{jsaeronbun_42_2_619} suggest that gradual deceleration is beneficial, as it reduces overshooting when the drone reaches the hand position.
+
+To further decrease the sense of intrusion, it is preferable for the drone to descend onto the palm from a direction perpendicular to the user's line of sight. This necessitates dividing the trajectory into distinct approach phases.
+
+\subsection{Trajectory Design}
+
+Based on the above findings, we propose the following trajectory, as illustrated in Figure \ref{fig:trajectory}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{dj.jpg}
+    \caption{Proposed trajectory for flapping drone approach.}
+    \label{fig:trajectory}
+\end{figure}
+
+
