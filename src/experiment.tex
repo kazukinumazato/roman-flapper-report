@@ -3,6 +3,25 @@ In this section, we first describe the testbed and then present the results of t
 
 \subsection{Testbed}
 
+\subsubsection{Overall system}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{system-chart.png}
+  \caption{Overall system configuration.}
+  \label{fig:system}
+\end{figure}
+Fig. \ref{fig:system} illustrates the overall experimental system configuration.
+The system consists of a motion capture (MoCap) system, a flapping-wing drone, a user wearing devices, and a PC for trajectory planning and control.
+The MoCap system tracks the 3D positions and orientations of the user's chest, palm, and the drone in real time.
+We place 8 Optitrack Prime 13 cameras on the 4 corners and 4 sides of the room.  
+The user wears chest-mounted and wrist-mounted markers allowing the system to capture intuitive control gestures. 
+The PC processes the positional data and calculates the drone's optimal approach path toward the user's palm while maintaining a safe distance. 
+The computed path is transmitted to the drone via a radio dongle, ensuring real-time control. 
+The drone goes to the newest goal received from the PC using PID control, adjusting its motion dynamically based on feedback from the MoCap system.
+
+Then, we describe the drone used in the experiment and the interface for control in detail.
+
 \subsubsection{Flapping Drone}
 
 \begin{figure}
@@ -72,17 +91,6 @@ Both devices were fabricated using a Bambu Lab X1-Carbon 3D printer.
 With these devices, we acquire the user's palm position and orientation from the motion capture system and calculate the desired drone behavior based on the user's palm position. 
 This interaction design only requires arm bending and streaching to switch the state of the drone and thus enables a seamless and intuitive approach control.
 
-
-\subsubsection{Experimental Environment}
-The experiment was conducted in an enclosed indoor environment with the following specifications:
-\begin{itemize}
-    \item Room dimensions: [specify dimensions]
-    \item Motion capture system: [specify system name]
-\end{itemize}
-
-A motion capture (MoCap) system was employed to track the positions of the hand, chest, and drone. Using these tracked positions, we developed an intuitive drone control interface that allows for natural interaction.
-
-
 \subsection{Results and Analysis}
 
 \subsubsection{Trajectory Mapping}
@@ -92,7 +100,7 @@ We mapped the actual flight trajectories of the drone in both 2D and 3D and comp
 We analyzed the velocity profile of the drone to examine:
 \begin{itemize}
     \item The presence or absence of overshoot.
-    \item Whether the approach was perpendicular to the user’s palm.
+    \item Whether the approach was perpendicular to the user's palm.
 \end{itemize}
 
 \subsubsection{Success Rate Analysis}

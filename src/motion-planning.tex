@@ -9,10 +9,10 @@ Given the expected size and shape of a flapping drone, we estimate that the mini
 Several studies have investigated the psychological burden imposed by drones depending on their distance from humans useing different drone sizes\cite{Yeh2017Proxemics, lieser2021evaluating-distances,Duncan2013comfortable-approach, Acharya2017robot-vs-drone-comfort}.
 \cite{lieser2021evaluating-distances} is a paper focusing on tactile drone interaction using a drone with a wheelbase of 0.92m, which is suitable for palm landing.
 This paper conducted an experiment in which participants were asked to stop the drone when they felt uncomfortable by using foot (non-contact) and hand (contact) methods.
-The results show that the overall stop distance was $\bar{x}$ = 0.63m ($\sigma$ = 0.33m),
+The results show that the maximum stop distance was approximately 1.25m,
 which means that, if the drone needs to approach closer than this distance, it should be done in psychologically safe manners such as gradually decreasing the speed or using a trajectory that does not directly approach the user so that the user does not feel threatened.
 
-Moreover, the study \cite{lieser2021evaluating-distances} also shows that the average distance at which participants stopped the drone using their hands was $\bar{x}$ = 0.47m ($\sigma$ = 0.09m).
+Moreover, the study \cite{lieser2021evaluating-distances} also shows that even the minimum stop distance was above 0.30m, which means that the drone should not approach the user closer than this distance.
 This indicates that physical contact should occur outside this range to guarantee physical and psychological safety.
 
 \subsection{Altitude}
@@ -60,6 +60,7 @@ Thus, the speed can be caliculated as follows:
 \end{equation}
 
 where $k^\prime$ is a constant.
+We let $k^\prime$ = 0.2 in the present study.
 
 \subsection{Trajectory Design}
 \label{sec:trajectory}
@@ -79,7 +80,7 @@ We divide the approach trajectory into four domains based on the distance betwee
     \item $r > r_v$
     
     The drone is far from the user and approaches the palm straight at a constant speed.
-    We let $r_v$ = 0.63m based on \ref{sec:distance}.
+    We let $r_v$ = 1.25 based on \ref{sec:distance}.
 
     \item $r_v \geq r > r_p$
     
@@ -98,6 +99,6 @@ We divide the approach trajectory into four domains based on the distance betwee
     If the drone is within this range, it is too close to the user and has a high risk of collision.
     Thus, the drone avoids the user by moving away from the user's body.
     Moreover, if the palm is within this range, the drone stays still and waits for the user to move their palm to the landing position outside the range so that the drone will not intrude the domain.
-    We let $r_s$ = 0.47m based on \ref{sec:distance}.
+    We let $r_s$ = 0.30m based on \ref{sec:distance}.
 
 \end{enumerate}
