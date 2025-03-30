@@ -1,9 +1,6 @@
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
 
-\IEEEoverridecommandlockouts                              % This command is only needed if 
-                                                          % you want to use the \thanks command
-
 \overrideIEEEmargins                                      % Needed to meet printer requirements.
 
 % See the \addtolength command later in the file to balance the column lengths
@@ -18,25 +15,27 @@
 \usepackage{times}
 \usepackage{bm}
 \usepackage{subcaption}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{rotating}   % 表を回転
+\usepackage{lscape}     % ページごと回転する場合に使用
+\captionsetup[figure]{font=footnotesize, labelfont=footnotesize}
 %
 \newcommand{\figref}[1]{Fig.~\ref{figure:#1}}
 \newcommand{\tabref}[1]{Table~\ref{table:#1}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
-
 \title{\LARGE \bf
-Motion Planning for Physical Contact-based Interaction with a Flapping-wing Drone
+Falconer-like interaction system with a flapping-wing drone based on palm landing planning
 }
 
 
-\author{Kazuki Numazato$^{1}$ and Moju Zhao$^{2}$% <-this % stops a space
+\author{Kazuki Numazato$^{1}$, Moju Zhao$^{2}$ % <-this % stops a space
 \thanks{*This work was not supported by any organization}% <-this % stops a space
-\thanks{$^{1}$Kazuki Numazato is with Faculty of Electrical Engineering, Mathematics and Computer Science,
-        University of Twente, 7500 AE Enschede, The Netherlands
-        {\tt\small albert.author@papercept.net}}%
-\thanks{$^{2}$Bernard D. Researcheris with the Department of Electrical Engineering, Wright State University,
-        Dayton, OH 45435, USA
-        {\tt\small b.d.researcher@ieee.org}}%
+\thanks{$^{1}$Kazuki Numazato is with the Department of Mechanical Engineering, The University
+        of Tokyo, Tokyo 113-8656, Japan (e-mail: numazato@dragon.t.u-tokyo.ac.jp).}%
+\thanks{$^{2}$Moju Zhao is with the Department of Mechanical Engineering, The University
+        of Tokyo, Tokyo 113-8656, Japan (e-mail: chou@jsk.imi.i.u-tokyo.ac.jp).}%
 }
 
 
@@ -52,6 +51,7 @@ Motion Planning for Physical Contact-based Interaction with a Flapping-wing Dron
 
 \input src/intro.tex
 \input src/modeling.tex
+\input src/human-gesture.tex
 \input src/motion-planning.tex
 \input src/experiment.tex
 \input src/conclusion.tex
@@ -62,9 +62,6 @@ Motion Planning for Physical Contact-based Interaction with a Flapping-wing Dron
                                   % This command does not take effect until the next page
                                   % so it should come on the page before the last. Make
                                   % sure that you do not shorten the textheight too much.
-
-\input src/appendix.tex
-\input src/acknowledge.tex
 
 \bibliographystyle{junsrt}
 \bibliography{main}

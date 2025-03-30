@@ -1,0 +1,10 @@
+\section{HUMAN GESTURE}
+
+In this section, we propose a human gesture recognition system for the interaction system.
+To achieve anytime, anywhere ignition of the palm landing motion, we need to consider a simple and intuitive gesture that can be easily recognized.
+Looking back on falconry, falconers streach their arm horizontally to use it as a landing port for the bird.
+In other words, they switch the state of the bird from flying to landing by changing the relative position of the arm to the chest.
+Inspired by this, we devide the drone states in midair into two: STAY and APPROACH,
+and trigger the transition between them by the user's arm gesture.
+To detect this gesture, we only need to measure the distance between the user's hand and chest.
+The specific distance threshold is shown in section~\ref{sec:trajectory}\ref{sec:innermost}.
