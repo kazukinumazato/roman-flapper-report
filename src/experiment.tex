@@ -61,24 +61,24 @@ In this section, we first describe the testbed and then present the results of t
 Fig.~\ref{fig:system} illustrates the overall system configuration.
 The system consists of a motion capture (MoCap) system, a flapping-wing drone, a user wearing devices, and a PC for trajectory planning and control.
 The MoCap system tracks the 3D positions and orientations of the user's chest, palm, and the drone in real time.
-We place 8 Optitrack Prime 13 cameras on the 4 corners and 4 sides of the room.  
+We use eight Optitrack Prime 13 cameras on the four corners and four sides of the room.  
 The user wears chest-mounted and wrist-mounted markers allowing the system to capture intuitive control gestures. 
 The PC processes the positional data and calculates the drone's optimal approach path toward the user's palm while maintaining a safe distance. 
 The computed path is transmitted to the drone via a radio dongle, ensuring real-time control. 
-The drone goes to the newest goal received from the PC using control in section~\ref{sec:modeling}, 
-adjusting its motion dynamically based on feedback from the MoCap system.
+The drone moves to the newest goal sent by the PC using control in Section~\ref{sec:modeling}, 
+adjusting its motion dynamically based on the feedback from the MoCap system.
 
 Then, we describe the drone used in the experiment and the interface for control in detail.
-Flapper Nimble+ used in the experiment, shown in Fig.~(\ref{fig:flapper}), is a flapping-wing drone by FLAPPER DRONES compatible with the Crazyflie software, 
+Flapper Nimble+ used in the experiment, shown in Fig.~\ref{fig:flapper}, is a flapping-wing drone by FLAPPER DRONES compatible with the Crazyflie software, 
 which is a open-source platform for research and development of quadcopters produced by Bitcraze AB. 
-As shown in Fig.~\ref{fig:leg} attached four motion capture markers on its legs for tracking its position and orientation. 
+As shown in Fig.~\ref{fig:leg} attached four motion capture markers on its legs for tracking the position and orientation. 
 As noted in Section~\ref{sec:motion-planning}-\ref{fig:trajectory}, the drone has to change its behavior according to the position of the user's palm.
 To facilitate intuitive control, we designed a wearable interface consisting of 
-a chest-mounted device shown in Fig.~(\ref{fig:chest}) and 
-a wrist-mounted device shown in Fig.~(\ref{fig:hand}).
+a chest-mounted device shown in Fig.~\ref{fig:chest} and 
+a wrist-mounted device shown in Fig.~\ref{fig:hand}.
 Both devices were fabricated using a PLA 3D printer. 
 With these devices, we acquire the user's palm position and orientation from the motion capture system and calculate the desired drone behavior based on the user's palm position. 
-This interaction design only requires arm bending and streaching to switch the state of the drone and thus enables a seamless and intuitive approach control.
+This interaction design only requires arm bending and stretching to switch the state of the drone and thus enables a seamless and intuitive approach control.
 \subsection{Palm Landing Experiments}
 \begin{figure}
     \begin{tabular}{cc}
@@ -134,8 +134,8 @@ This interaction design only requires arm bending and streaching to switch the s
     \caption{Results of the experiment. 
     (a) Trajectory and orientations of the drone during the approach.
     The red points indicates the actual positions of the drone during the approach and the blue points the target positions. 
-    The arrows stemming from the red points indicate the orientation of the drone.
-    The blue points start when the drone state becomes "APPROACH" as shown in Fig.~\ref{fig:simple_hand_landing_trajectory}.
+    The arrows extruding from the red points indicate the orientation of the drone.
+    The blue points show when the drone reaches "APPROACH" state as shown in Fig.~\ref{fig:simple_hand_landing_trajectory}.
     (b) Velocity profile of the drone during the approach. 
     The vertical dotted red line indicates the approach start time,
     the black line the time when the drone starts to decelerate,
@@ -150,7 +150,7 @@ We explain the results of the experiment in the following sections.
 
 \subsubsection{Trajectory Mapping}
 In Fig.~\ref{fig:trajectory}, it can be observed that the drone closely follows the planned trajectory and the drone's orientation always faces the user's chest.
-To examine the precise time offset between the actual and target positions, we calculate the root mean square error (RMSE) between them based on different time offsets, which is shown in Table~\ref{tab:rmse}.
+To examine the precise time offset between the actual and target positions, we calculate the root mean square error (RMSE) based on different time offsets, which is shown in Table~\ref{tab:rmse}.
 \begin{table}[t]
   \centering
   \caption{RMSE for Different Time Offsets}
@@ -184,12 +184,14 @@ This suggests that the drone's response time is significantly slower than expect
 
 \subsubsection{Velocity}
 In Fig.~\ref{fig:simple_hand_landing_vel},
-you can see that between the red and black lines, XY speed osscilates around a constant value, and between the black and blue lines, the XY speed decreases with oscillation.
+it is observed that between the red and black lines, XY speed oscillates around a constant value, and between the black and blue lines, the XY speed decreases with oscillation.
 The oscillation is considered to be due to the constantly updated goal position at a certain frequency.
-From Eq.~(\ref{eq:weber}), the oscillation means the instability of $\Delta s$.,
-which might cause a psychological threat to the user.
-To mitigate this, we can consider increasing the frequency of the goal position update or using a smoother trajectory planning method.
-Additionally, You can see a sudden increase right after the blue line, which is considered to be due to the acceleration caused by the change in $k^\prime$ as expected.
+From Eq.~(\ref{eq:weber}), the oscillation causes instability in $\Delta s$,
+which causes a potential psychological threat to the user.
+To mitigate this, we can consider increasing the frequency of updating the goal position or using a smoother trajectory planning method.
+Additionally, in practical applications, we find that the drone becomes too slow at a short distance from the user due to the small $k^\prime$.
+To avoid this, we change $k^\prime$ from 0.2 to 0.5 at a distance of 0.3m from the palm.
+This change can be observed in Fig.~\ref{fig:simple_hand_landing_vel} as the sudden increase in XY speed right after the blue line.
 
 \subsubsection{Distance Between Chest and Drone}
 As shown in Fig.~\ref{fig:simple_hand_landing_xy_distances}, the chest-drone distance and the drone-hand distance start decreasing 
@@ -197,4 +199,24 @@ when the chest-hand distance is above 0.3m.
 The minimum distance between the drone and the user's chest is 0.693m.
 The drone successfully keeps out of the chest-hand range.
 Furthermore, the drone-hand distance gradually and smoothly decreases to zero without any overshoots,
-which enables smoothe and safe palm-landing.
+which enables smooth and safe palm-landing.
+
+\subsection{Tracking Performance}
+\begin{figure}
+  \centering
+  \begin{tabular}{cc}
+      \begin{minipage}[t]{\columnwidth}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.19]{switch-trajectory.png}
+        \subcaption{}
+        \label{fig:tracking}
+      \end{minipage}\\
+      \begin{minipage}[t]{\columnwidth}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.19]{switch-trajectory.png}
+        \subcaption{}
+        \label{fig:tracking_vel}
+      \end{minipage} 
+    \end{tabular}
+  \caption{Results of the tracking performance.}
+\end{figure}
