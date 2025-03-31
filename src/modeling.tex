@@ -12,16 +12,16 @@ The drone is mounted with four motors: two motors for thrust (m1, m2), one motor
 We can treat the dynamics as a single rigid body as follows:
 \begin{equation}
     \begin{aligned}
-      &m\bm{a} = m\bm{g} + \it{R}\bm{f}\\
-      &I\dot{\bm{\omega}} + \bm{\omega} \times I\bm{\omega} = \bm{\tau}
+      &m\bm{a} = m\bm{g} + \mathit{R}\bm{f} \\
+      &\mathit{I}\dot{\bm{\omega}} + \bm{\omega} \times \mathit{I}\bm{\omega} = \bm{\tau}
     \end{aligned}
 \end{equation}
 where $m$ is the mass of the drone, 
 $\bm{a}$ is the acceleration of the drone,
 $\bm{g}$ is the gravity vector,
-$\it{R}$ is the rotation matrix of the drone,
+$\mathit{R}$ is the orientation matrix of the drone,
 $\bm{f}$ is the thrust force of the drone,
-$I$ is the inertia matrix of the drone, 
+$\mathit{I}$ is the inertia matrix of the drone, 
 \bm{$\omega$} is the angular velocity of the drone, 
 and \bm{$\tau$} is the torque applied to the drone.
 The thrust force $\bm{f}$ and the torque $\bm{\tau}$ can be represented as follows:
@@ -33,10 +33,10 @@ The thrust force $\bm{f}$ and the torque $\bm{\tau}$ can be represented as follo
       \bm{\tau}
     \end{bmatrix}
     &=
-    g(m_1\omega_1, m_2\omega_2, m_3\theta_3, m_4\theta_4)\\
+    h(m_1\omega_1, m_2\omega_2, m_3\theta_3, m_4\theta_4)\\
   \end{aligned}
 \end{equation}
-where $\omega_i$ is the angular velocity of the motor $i$, $m_i$ is the coefficient of the motor $i$, $\theta_i$ is the angle of the motor $i$, and $g$ is the mapping function from $\mathbb{R}^4$ to $\mathbb{R}^6$.
+where $\omega_i$ is the angular velocity of the motor $i$, $m_i$ is the coefficient of the motor $i$, $\theta_i$ is the angle of the motor $i$, and $h$ is the mapping function from $\mathbb{R}^4$ to $\mathbb{R}^6$.
 Based on these equations, we can derive the following PID control law:
 \begin{equation}
   \begin{aligned}
@@ -54,4 +54,4 @@ $\bm{e_r}$ is the error of the position,
 $\bm{e_\theta}$ is the error of the orientation, 
 $\bm{\theta}$ is the orientation of the drone, 
 and $\bm{\theta}_d$ is the desired orientation of the drone.
-Then, we can calculate the desired motor inputs from the desired thrust force and torque using the mapping function $g$ in (\ref{eq:control}).
+Then, we can calculate the desired motor inputs from the desired thrust force and torque using the mapping function $h$ in (\ref{eq:control}).
