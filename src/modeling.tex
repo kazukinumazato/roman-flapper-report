@@ -1,7 +1,7 @@
 \section{MODELING}
 \label{sec:modeling}
-In this section, we describe the dynamic model and control of a basic flapping-wing drone.
-\begin{figure}[t]
+
+\begin{figure}[!b]
     \centering
     \includegraphics[width=\columnwidth]{modeling.png}
     \caption{The mechanical structure model of a tailless aerial robotic flapper.
@@ -11,21 +11,23 @@ In this section, we describe the dynamic model and control of a basic flapping-w
     }
     \label{figure:modeling}
   \end{figure}
+
+In this section, we describe the dynamic model and control of a basic flapping-wing drone.
 There are various types of flapping-wing drones, and we focus on a tailless aerial robotic flapper model~\cite{karasek2018tailless}, as shown in Fig.~\ref{figure:modeling}.
 The drone is mounted with four motors: two motors for thrust (m1, m2), one motor for pitch control (m3), and one motor for yaw control (m4).
 We can treat the dynamics as a single rigid body as follows:
 \begin{equation}
     \begin{aligned}
-      &m\bm{a} = m\bm{g} + \mathit{R}\bm{f} \\
-      &\mathit{I}\dot{\bm{\omega}} + \bm{\omega} \times \mathit{I}\bm{\omega} = \bm{\tau}
+      &m\bm{a} = m\bm{g} + \bm{\mathit{R}}\bm{f} \\
+      &\bm{\mathit{I}}\dot{\bm{\omega}} + \bm{\omega} \times \bm{\mathit{I}}\bm{\omega} = \bm{\tau}
     \end{aligned}
 \end{equation}
 where $m$ is the mass of the drone, 
 $\bm{a}$ is the acceleration of the drone,
 $\bm{g}$ is the gravity vector,
-$\mathit{R}$ is the orientation matrix of the drone,
+$\bm{\mathit{R}}$ is the orientation matrix of the drone,
 $\bm{f}$ is the thrust force of the drone,
-$\mathit{I}$ is the inertia matrix of the drone, 
+$\bm{\mathit{I}}$ is the inertia matrix of the drone, 
 \bm{$\omega$} is the angular velocity of the drone, 
 and \bm{$\tau$} is the torque applied to the drone.
 The thrust force $\bm{f}$ and the torque $\bm{\tau}$ can be represented as follows:
@@ -37,10 +39,12 @@ The thrust force $\bm{f}$ and the torque $\bm{\tau}$ can be represented as follo
       \bm{\tau}
     \end{bmatrix}
     &=
-    h(m_1\omega_1, m_2\omega_2, m_3\theta_3, m_4\theta_4)\\
+    h(\omega_1, \omega_2, \theta_3, \theta_4)\\
   \end{aligned}
 \end{equation}
-where $\omega_i$ is the angular velocity of the motor $i$, $m_i$ is the coefficient of the motor $i$, $\theta_i$ is the angle of the motor $i$, and $h$ is the mapping function from $\mathbb{R}^4$ to $\mathbb{R}^6$.
+where $\omega_i$ is the angular velocity of the motor $i$, 
+$\theta_i$ is the angle of the motor $i$, 
+and $h$ is the mapping function from $\mathbb{R}^4$ to $\mathbb{R}^6$.
 Based on these equations, we can derive the following PID control law:
 \begin{equation}
   \begin{aligned}

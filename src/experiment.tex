@@ -38,11 +38,7 @@ Then, we describe the drone used in the experiment and the interface for control
     \end{tabular}
   \caption{(a) Flapper Nimble+ drone, (b) its leg with motion capture markers.}
 \end{figure}
-Flapper Nimble+ \cite{company_product} used in the experiment, shown in Fig.~\ref{fig:flapper}, is a flapping-wing drone by FLAPPER DRONES compatible with the Crazyflie software, 
-which is a open-source platform for research and development of quadcopters produced by Bitcraze AB. 
-As shown in Fig.~\ref{fig:leg}, we attached four motion capture markers on its legs for tracking the position and orientation. 
-As noted in Section~\ref{sec:motion-planning}-\ref{fig:trajectory}, the drone has to change its behavior according to the position of the user's palm.
-\begin{figure}[t]
+\begin{figure}[!b]
   \centering
   \begin{tabular}{cc}
       \begin{minipage}[t]{0.4 \columnwidth}
@@ -72,6 +68,10 @@ As noted in Section~\ref{sec:motion-planning}-\ref{fig:trajectory}, the drone ha
     \end{tabular}
   \caption{(a) Chest-mounted device, (c) wrist-mounted device for controlling the state of flapping drone. (b, d) the attachment of the devices.}
 \end{figure}
+Flapper Nimble+ \cite{company_product} used in the experiment, shown in Fig.~\ref{fig:flapper}, is a flapping-wing drone by FLAPPER DRONES compatible with the Crazyflie software, 
+which is a open-source platform for research and development of quadcopters produced by Bitcraze AB. 
+As shown in Fig.~\ref{fig:leg}, we attached four motion capture markers on its legs for tracking the position and orientation. 
+As noted in Section~\ref{sec:motion-planning}-\ref{fig:trajectory}, the drone has to change its behavior according to the position of the user's palm.
 To facilitate intuitive control, we designed a wearable interface consisting of 
 a chest-mounted device shown in Fig.~\ref{fig:chest} and 
 a wrist-mounted device shown in Fig.~\ref{fig:hand}.
@@ -110,7 +110,7 @@ This interaction design only requires arm bending and stretching to switch the s
     \caption{The drone states during the experiment. (a) Start, (b) Takeoff, (c) Approach, (d) Palm landing.}
     \label{fig:states}
 \end{figure}
-\begin{figure}[t]
+\begin{figure}[!b]
   \centering
   \includegraphics[keepaspectratio, scale=0.23]{simple-hand-landing-trajectory.png}
   \caption{Trajectory and orientations of the drone during the approach.
@@ -151,13 +151,13 @@ Additionally, in practical applications, we found that the drone became too slow
 To avoid this, we changed $k^\prime$ from 0.2 to 0.5 at a distance of 0.3m from the palm.
 This change can be observed in Fig.~\ref{fig:simple_hand_landing_vel} as the sudden increase in XY speed right after the blue line.
 
-\begin{figure}
+\begin{figure}[!b]
   \centering
   \includegraphics[keepaspectratio, scale=0.24]{XY_distances.png}
   \caption{Distance between the user's chest and the drone during the approach.}
   \label{fig:simple_hand_landing_xy_distances}
 \end{figure}
-\subsubsection{Distance Between Chest and Drone}
+\subsubsection{Distance}
 As shown in Fig.~\ref{fig:simple_hand_landing_xy_distances}, the chest-drone distance and the drone-hand distance started decreasing 
 when the chest-hand distance was above 0.3m.
 The minimum distance between the drone and the user's chest was 0.693m.
@@ -166,27 +166,46 @@ Furthermore, the drone-hand distance gradually and smoothly decreased to zero wi
 which enabled smooth and safe palm-landing.
 
 \subsection{Tracking Performance}
-\begin{figure}
+\begin{figure}[!b]
+  \centering
+  \begin{tabular}{cc}
+      \begin{minipage}[t]{0.35 \columnwidth}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.308]{switch.png}
+        \subcaption{}
+        \label{fig:switch}
+      \end{minipage} &
+      \begin{minipage}[t]{0.45 \columnwidth}
+        \centering
+        \includegraphics[keepaspectratio, scale=0.3]{moving-around.png}
+        \subcaption{}
+        \label{fig:moving-around}
+      \end{minipage}
+    \end{tabular}
+  \caption{(a) Switching the drone state between "STAY" and "APPROACH". (b) The user moving around. 
+  The red arrows indicate the goal direction of the drone. The yellow arrows indicate the movement of the user.}
+\end{figure}
+\begin{figure}[!b]
   \centering
   \includegraphics[keepaspectratio, scale=0.19]{switch-trajectory.png}
   \caption{Trajectory and orientations of the drone in the case of switching the drone state between "STAY" and "APPROACH".}
-  \label{fig:switch}
+  \label{fig:switch-trajectory}
 \end{figure}
-\begin{figure}
+\begin{figure}[!b]
   \centering
   \includegraphics[keepaspectratio, scale=0.19]{moving-around-trajectory.png}
   \caption{Trajectory and orientations of the drone in the case of the user moving around. 
   The numbers after "APPROACH" and "STAY" indicate the order of the state. 
-  The same labels indicate that the points are at the same time. The user moved around the drone between the state "STAY2" and "APPROACH2".}
-  \label{fig:moving}
+  The same labels indicate that the points are at the same time. 
+  The user moved around the drone.}
+  \label{fig:moving-trajectory}
 \end{figure}
-As shown in Fig.~\ref{fig:switch}, the drone successfully switched between the "STAY" and "APPROACH" states,
+As shown in Fig.~\ref{fig:switch} and Fig.~\ref{fig:switch-trajectory}, the drone successfully switched between the "STAY" and "APPROACH" states,
 and when the drone was in the "STAY" state, the drone maintained its current position.
 However, it can be observed that right after the state switch, the drone went slightly over the target position and then swung back to the target position.
 This overshoot is considered to be due to the inertia of the drone.
 This type of unexpected behavior can cause threat to the user's psychological safety.
 To mitigate this, we can consider adding a function to gradually decrease the drone's speed when switching the state by anticipating the change of the user's gesture.
 The change of the user's gesture can be detected by the change of the chest-hand distance.
-Additionally, as shown in Fig.~\ref{fig:moving}, the drone successfully followed the user's movement.
-This ensures that the user can freely decide the palm-landing position and time.
-
+Additionally, as shown in Fig.~\ref{fig:moving-around} and Fig.~\ref{fig:moving-trajectory}, the drone successfully followed the user who was moving around.
+This ensures that the user can freely decide the palm-landing position and time
